@@ -1,3 +1,6 @@
+[phases.setup]
+nixPkgs = ["nodejs", "openssl"]
+
 [phases.install]
 dependsOn = ["setup"]
 cmds = ["cd ekin-app && npm ci"]
