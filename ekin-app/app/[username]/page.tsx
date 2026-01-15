@@ -24,9 +24,10 @@ async function getUserProfile(username: string) {
 export default async function ProfilePage({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
-  const data = await getUserProfile(params.username);
+  const { username } = await params;
+  const data = await getUserProfile(username);
 
   if (!data) {
     notFound();
@@ -80,9 +81,10 @@ export default async function ProfilePage({
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
-  const data = await getUserProfile(params.username);
+  const { username } = await params;
+  const data = await getUserProfile(username);
 
   if (!data) {
     return {
