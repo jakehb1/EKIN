@@ -6,9 +6,12 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-# Copy package files
-COPY ekin-app/package.json ekin-app/package-lock.json* ./
-RUN npm ci || npm install
+# Copy package files and prisma schema
+COPY ekin-app/package.json ./
+COPY ekin-app/prisma ./prisma/
+
+# Install dependencies
+RUN npm install
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -16,8 +19,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY ekin-app/ ./
 
-# Generate Prisma Client and build
-RUN npx prisma generate
+# Build the application
 RUN npm run build
 
 # Production image, copy all the files and run next
@@ -26,13 +28,15 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+RUN apk add --no-cache openssl
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built application
+# Copy necessary files
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 USER nextjs
 
