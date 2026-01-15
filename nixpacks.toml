@@ -1,10 +1,9 @@
-[phases.setup]
-nixPkgs = ["nodejs_21", "openssl"]
-
 [phases.install]
-cmds = ["cd ekin-app && npm install"]
+dependsOn = ["setup"]
+cmds = ["cd ekin-app && npm ci"]
 
 [phases.build]
+dependsOn = ["install"]
 cmds = ["cd ekin-app && npm run build"]
 
 [start]
