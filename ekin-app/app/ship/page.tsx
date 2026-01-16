@@ -190,18 +190,18 @@ export default function ShipPage() {
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={handlePublish}
               disabled={loading || isOverLimit || !content.trim()}
-              className="bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors touch-manipulation"
             >
               {loading ? 'publishing...' : 'ship it →'}
             </button>
 
             <Link
               href="/dashboard"
-              className="border-2 border-black px-8 py-4 text-lg font-bold hover:bg-black hover:text-white transition-colors inline-block"
+              className="border-2 border-black px-8 py-4 text-lg font-bold hover:bg-black hover:text-white transition-colors inline-block text-center touch-manipulation"
             >
               cancel
             </Link>
