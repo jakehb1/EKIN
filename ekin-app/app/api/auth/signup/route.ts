@@ -67,8 +67,28 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Signup error:', error);
+
+    // Provide more specific error messages
+    const errorMessage = error instanceof Error ? error.message : 'internal server error';
+
+    // Check if it's a Prisma connection error
+    if (errorMessage.includes('connect') || errorMessage.includes('connection')) {
+      return NextResponse.json(
+        { error: 'database connection failed - please ensure DATABASE_URL is set' },
+        { status: 500 }
+      );
+    }
+
+    // Check if it's a table not found error
+    if (errorMessage.includes('does not exist') || errorMessage.includes('relation')) {
+      return NextResponse.json(
+        { error: 'database not initialized - please visit /api/setup first' },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: 'internal server error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
