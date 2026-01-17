@@ -149,7 +149,7 @@ export default function ShipPage() {
           <Link href="/dashboard" className="text-2xl hover:opacity-50 transition-opacity">
             ← back
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-2">ship it</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-2">post update</h1>
           <p className="text-lg">JUST DO IT</p>
         </header>
 
@@ -196,7 +196,7 @@ export default function ShipPage() {
               disabled={loading || isOverLimit || !content.trim()}
               className="bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors touch-manipulation"
             >
-              {loading ? 'publishing...' : 'ship it →'}
+              {loading ? 'publishing...' : 'publish'}
             </button>
 
             <Link

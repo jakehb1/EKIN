@@ -83,18 +83,15 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen p-6 md:p-12">
       <header className="max-w-4xl mx-auto mb-12">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 gap-4">
+        <div className="flex justify-between items-start mb-8">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-2">EKIN</h1>
             <p className="text-lg">JUST DO IT</p>
           </div>
-          <div className="md:text-right">
-            <p className="text-sm mb-2">
-              logged in as{' '}
-              <Link href={`/${user.username}`} className="underline hover:no-underline">
-                {user.name}
-              </Link>
-            </p>
+          <div className="text-right">
+            <Link href={`/${user.username}`} className="text-sm underline hover:no-underline mb-2 block">
+              my profile
+            </Link>
             <button
               onClick={logout}
               className="text-sm underline hover:no-underline"
@@ -102,39 +99,6 @@ export default function DashboardPage() {
               log out
             </button>
           </div>
-        </div>
-
-        <div className="flex justify-between items-center border-t-2 border-b-2 border-black py-4">
-          <button
-            onClick={handlePreviousWeek}
-            className="text-3xl md:text-2xl px-4 md:px-2 py-2 hover:opacity-50 transition-opacity touch-manipulation"
-            aria-label="Previous week"
-          >
-            ←
-          </button>
-          <div className="text-center flex-1 px-2">
-            <p className="text-lg md:text-xl font-bold">{formatWeek(weekStart)}</p>
-            {!isCurrentWeek(weekStart) && (
-              <button
-                onClick={handleCurrentWeek}
-                className="text-xs md:text-sm underline hover:no-underline mt-1"
-              >
-                back to current week
-              </button>
-            )}
-          </div>
-          <button
-            onClick={handleNextWeek}
-            disabled={isCurrentWeek(weekStart)}
-            className={`text-3xl md:text-2xl px-4 md:px-2 py-2 transition-opacity touch-manipulation ${
-              isCurrentWeek(weekStart)
-                ? 'opacity-20 cursor-not-allowed'
-                : 'hover:opacity-50'
-            }`}
-            aria-label="Next week"
-          >
-            →
-          </button>
         </div>
       </header>
 
@@ -145,7 +109,7 @@ export default function DashboardPage() {
               href="/ship"
               className="inline-block bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 transition-colors"
             >
-              ship it →
+              post update
             </Link>
           </div>
         )}
