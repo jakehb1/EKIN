@@ -169,7 +169,7 @@ export default function ShipPage() {
     <div className="min-h-screen p-6 md:p-12">
       <div className="max-w-3xl mx-auto">
         <header className="mb-12">
-          <Link href="/dashboard" className="text-2xl hover:opacity-50 transition-opacity">
+          <Link href="/dashboard" className="text-lg hover:opacity-50 transition-opacity">
             ← back
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-2">post update</h1>
