@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="max-w-4xl">
         <h1 className="text-7xl md:text-9xl font-bold mb-8">EKIN</h1>
-        <p className="text-3xl md:text-4xl mb-4">what did you get done?</p>
+        <p className="text-3xl md:text-4xl mb-4">JUST DO IT</p>
         <p className="text-xl md:text-2xl mb-12 max-w-2xl">
           a simple weekly tool. no extra fluff.<br />
           its about what you got done, on a weekly basis.

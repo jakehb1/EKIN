@@ -86,7 +86,7 @@ export default function DashboardPage() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 gap-4">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-2">EKIN</h1>
-            <p className="text-lg">what did you get done?</p>
+            <p className="text-lg">JUST DO IT</p>
           </div>
           <div className="md:text-right">
             <p className="text-sm mb-2">
