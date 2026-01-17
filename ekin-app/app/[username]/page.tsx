@@ -1,20 +1,40 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { formatWeek } from '@/lib/week';
+import { prisma } from '@/lib/prisma';
 
 async function getUserProfile(username: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-
   try {
-    const res = await fetch(`${baseUrl}/api/users/${username}`, {
-      cache: 'no-store',
+    const user = await prisma.user.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        name: true,
+        title: true,
+      },
     });
 
-    if (!res.ok) {
+    if (!user) {
       return null;
     }
 
-    return res.json();
+    const updates = await prisma.update.findMany({
+      where: {
+        userId: user.id,
+        publishedAt: { not: null },
+      },
+      orderBy: {
+        weekStart: 'desc',
+      },
+      select: {
+        id: true,
+        content: true,
+        weekStart: true,
+      },
+    });
+
+    return { user, updates };
   } catch (error) {
     console.error('Failed to fetch user profile:', error);
     return null;
