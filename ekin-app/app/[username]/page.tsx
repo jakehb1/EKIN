@@ -52,11 +52,11 @@ export default async function ProfilePage({
         </header>
 
         <main>
-          <h2 className="text-2xl font-bold mb-8">shipped history</h2>
+          <h2 className="text-2xl font-bold mb-8">weekly history</h2>
 
           {updates.length === 0 ? (
             <div className="border-2 border-black p-12 text-center">
-              <p className="text-xl">nothing shipped yet</p>
+              <p className="text-xl">nothing yet</p>
             </div>
           ) : (
             <div className="space-y-8">
@@ -94,6 +94,6 @@ export async function generateMetadata({
 
   return {
     title: `${data.user.name} — EKIN`,
-    description: `what ${data.user.name} shipped`,
+    description: `what ${data.user.name} got done`,
   };
 }

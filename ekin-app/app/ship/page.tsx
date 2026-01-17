@@ -150,7 +150,7 @@ export default function ShipPage() {
             ← back
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-2">ship it</h1>
-          <p className="text-lg">what did you ship this week?</p>
+          <p className="text-lg">what did you get done this week?</p>
         </header>
 
         <main>

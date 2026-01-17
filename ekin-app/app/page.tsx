@@ -5,10 +5,10 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="max-w-4xl">
         <h1 className="text-7xl md:text-9xl font-bold mb-8">EKIN</h1>
-        <p className="text-3xl md:text-4xl mb-4">what did you ship?</p>
+        <p className="text-3xl md:text-4xl mb-4">what did you get done?</p>
         <p className="text-xl md:text-2xl mb-12 max-w-2xl">
-          a brutally simple weekly accountability tool.<br />
-          three sentences. no fluff. no bullshit.
+          a simple weekly tool. no extra fluff.<br />
+          its about what you got done, on a weekly basis.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
@@ -29,10 +29,10 @@ export default function Home() {
         <div className="mt-16 border-t-2 border-black pt-8">
           <p className="text-sm text-gray-600 mb-4">how it works:</p>
           <ol className="list-decimal list-inside space-y-2 text-lg">
-            <li>log in every week</li>
-            <li>write what you shipped (280 chars max)</li>
-            <li>your team sees it</li>
-            <li>repeat</li>
+            <li>write what you did this week</li>
+            <li>publish it</li>
+            <li>let your team or boss see it (whoever is more important)</li>
+            <li>go about your day knowing WHAT YOU GOT DONE</li>
           </ol>
         </div>
       </div>

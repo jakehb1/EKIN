@@ -9,8 +9,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EKIN — what did you ship?",
-  description: "brutally simple weekly accountability",
+  title: "EKIN — what did you get done?",
+  description: "a simple weekly tool. no extra fluff. its about what you got done, on a weekly basis.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 

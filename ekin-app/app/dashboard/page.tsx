@@ -86,7 +86,7 @@ export default function DashboardPage() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 gap-4">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-2">EKIN</h1>
-            <p className="text-lg">what did you ship?</p>
+            <p className="text-lg">what did you get done?</p>
           </div>
           <div className="md:text-right">
             <p className="text-sm mb-2">
@@ -154,7 +154,7 @@ export default function DashboardPage() {
           <p>loading updates...</p>
         ) : updates.length === 0 ? (
           <div className="border-2 border-black p-12 text-center">
-            <p className="text-xl">nothing shipped yet this week</p>
+            <p className="text-xl">nothing yet this week</p>
           </div>
         ) : (
           <div className="space-y-8">
