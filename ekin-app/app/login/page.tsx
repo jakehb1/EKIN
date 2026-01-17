@@ -83,7 +83,7 @@ export default function LoginPage() {
         <p className="mt-8 text-sm">
           new here?{' '}
           <Link href="/signup" className="underline hover:no-underline">
-            join the crew
+            join
           </Link>
         </p>
       </div>

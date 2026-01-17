@@ -85,9 +85,13 @@ export default async function ProfilePage({
                   <p className="text-sm font-bold mb-3">
                     {formatWeek(new Date(update.weekStart))}
                   </p>
-                  <p className="text-lg leading-relaxed whitespace-pre-wrap">
-                    {update.content}
-                  </p>
+                  <div className="space-y-3">
+                    {update.content.split('\n').filter((item: string) => item.trim()).map((item: string, index: number) => (
+                      <div key={index} className="border-2 border-black p-4 bg-white">
+                        <p className="text-lg leading-relaxed">{item}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

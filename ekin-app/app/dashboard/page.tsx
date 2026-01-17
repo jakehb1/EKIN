@@ -135,9 +135,13 @@ export default function DashboardPage() {
                     <p className="text-sm text-gray-600">{update.user.title}</p>
                   )}
                 </div>
-                <p className="text-lg leading-relaxed whitespace-pre-wrap">
-                  {update.content}
-                </p>
+                <div className="space-y-3">
+                  {update.content.split('\n').filter(item => item.trim()).map((item, index) => (
+                    <div key={index} className="border-2 border-black p-4 bg-white">
+                      <p className="text-lg leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

@@ -35,7 +35,7 @@ export default function SignupPage() {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <h1 className="text-4xl font-bold mb-2">EKIN</h1>
-        <p className="text-xl mb-12">join the crew</p>
+        <p className="text-xl mb-12">join</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>

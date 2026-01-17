@@ -16,7 +16,7 @@ export default function Home() {
             href="/signup"
             className="bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 transition-colors text-center"
           >
-            join the crew →
+            join →
           </Link>
           <Link
             href="/login"
