@@ -10,7 +10,7 @@ const MAX_CHARS = 280;
 export default function ShipPage() {
   const { user, token, loading: authLoading } = useAuth();
   const router = useRouter();
-  const [content, setContent] = useState('');
+  const [items, setItems] = useState<string[]>(['', '', '']);
   const [loading, setLoading] = useState(false);
   const [savingDraft, setSavingDraft] = useState(false);
   const [error, setError] = useState('');
@@ -39,7 +39,8 @@ export default function ShipPage() {
       if (res.ok) {
         const data = await res.json();
         if (data.update) {
-          setContent(data.update.content);
+          const lines = data.update.content.split('\n');
+          setItems(lines.length > 0 ? lines : ['', '', '']);
         }
       }
     } catch (error) {
@@ -48,6 +49,7 @@ export default function ShipPage() {
   };
 
   const saveDraft = async () => {
+    const content = items.filter(item => item.trim()).join('\n');
     if (!content.trim()) return;
 
     try {
@@ -81,6 +83,8 @@ export default function ShipPage() {
   };
 
   const handlePublish = async () => {
+    const content = items.filter(item => item.trim()).join('\n');
+
     if (!content.trim()) {
       setError('write something first');
       return;
@@ -122,14 +126,14 @@ export default function ShipPage() {
 
   // Auto-save draft
   useEffect(() => {
-    if (!content) return;
+    if (items.every(item => !item.trim())) return;
 
     const timeoutId = setTimeout(() => {
       saveDraft();
     }, 2000);
 
     return () => clearTimeout(timeoutId);
-  }, [content]);
+  }, [items]);
 
   if (authLoading || !user) {
     return (
@@ -139,8 +143,27 @@ export default function ShipPage() {
     );
   }
 
-  const charsLeft = MAX_CHARS - content.length;
+  const totalContent = items.filter(item => item.trim()).join('\n');
+  const charsLeft = MAX_CHARS - totalContent.length;
   const isOverLimit = charsLeft < 0;
+
+  const updateItem = (index: number, value: string) => {
+    const newItems = [...items];
+    newItems[index] = value;
+    setItems(newItems);
+  };
+
+  const addItem = () => {
+    if (items.length < 5) {
+      setItems([...items, '']);
+    }
+  };
+
+  const removeItem = (index: number) => {
+    if (items.length > 1) {
+      setItems(items.filter((_, i) => i !== index));
+    }
+  };
 
   return (
     <div className="min-h-screen p-6 md:p-12">
@@ -155,18 +178,42 @@ export default function ShipPage() {
 
         <main>
           <div className="mb-4">
-            <label htmlFor="update" className="block text-sm mb-2">
-              your update <span className="text-gray-500">(3 sentences max, {MAX_CHARS} chars)</span>
+            <label className="block text-sm mb-2">
+              what you got done this week <span className="text-gray-500">(up to 5 things, {MAX_CHARS} chars total)</span>
             </label>
-            <textarea
-              id="update"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className={`w-full px-4 py-4 border-2 focus:outline-none focus:ring-0 min-h-[200px] text-lg resize-none ${
-                isOverLimit ? 'border-red-600' : 'border-black'
-              }`}
-              placeholder="shipped the new dashboard. fixed critical auth bug. deployed to prod."
-            />
+            <div className="space-y-3">
+              {items.map((item, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={item}
+                    onChange={(e) => updateItem(index, e.target.value)}
+                    className={`flex-1 px-4 py-3 border-2 focus:outline-none focus:ring-0 text-lg ${
+                      isOverLimit ? 'border-red-600' : 'border-black'
+                    }`}
+                    placeholder={`Thing ${index + 1}`}
+                  />
+                  {items.length > 1 && (
+                    <button
+                      onClick={() => removeItem(index)}
+                      className="px-4 py-3 border-2 border-black hover:bg-black hover:text-white transition-colors"
+                      type="button"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+            {items.length < 5 && (
+              <button
+                onClick={addItem}
+                className="mt-3 px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-colors text-sm"
+                type="button"
+              >
+                + add another
+              </button>
+            )}
             <div className="flex justify-between items-center mt-2">
               <p
                 className={`text-sm ${
@@ -193,7 +240,7 @@ export default function ShipPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={handlePublish}
-              disabled={loading || isOverLimit || !content.trim()}
+              disabled={loading || isOverLimit || items.every(item => !item.trim())}
               className="bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors touch-manipulation"
             >
               {loading ? 'publishing...' : 'publish'}
