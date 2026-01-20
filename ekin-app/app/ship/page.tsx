@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
+import { formatWeek, getWeekStart } from '@/lib/week';
 
 const MAX_CHARS = 280;
 
@@ -174,6 +175,10 @@ export default function ShipPage() {
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-2">post update</h1>
           <p className="text-lg">JUST DO IT</p>
+          <div className="mt-4 border-t-2 border-black pt-4">
+            <p className="text-sm text-gray-600">posting for:</p>
+            <p className="text-xl font-bold">{formatWeek(getWeekStart())}</p>
+          </div>
         </header>
 
         <main>
