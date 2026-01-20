@@ -100,6 +100,16 @@ export default function DashboardPage() {
             </button>
           </div>
         </div>
+
+        <div className="border-t-2 border-black pt-8">
+          <p className="text-sm text-gray-600 mb-4">how it works:</p>
+          <ol className="list-decimal list-inside space-y-2 text-lg">
+            <li>write what you did this week</li>
+            <li>publish it</li>
+            <li>let your team or boss see it (whoever is more important)</li>
+            <li>go about your day knowing WHAT YOU GOT DONE</li>
+          </ol>
+        </div>
       </header>
 
       <main className="max-w-4xl mx-auto">
