@@ -103,17 +103,6 @@ export default function DashboardPage() {
       </header>
 
       <main className="max-w-4xl mx-auto">
-        {isCurrentWeek(weekStart) && (
-          <div className="mb-12">
-            <Link
-              href="/ship"
-              className="inline-block bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 transition-colors"
-            >
-              post update
-            </Link>
-          </div>
-        )}
-
         {loading ? (
           <p>loading updates...</p>
         ) : updates.length === 0 ? (
@@ -144,6 +133,17 @@ export default function DashboardPage() {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {isCurrentWeek(weekStart) && (
+          <div className="mt-12">
+            <Link
+              href="/ship"
+              className="inline-block bg-black text-white px-8 py-4 text-lg font-bold hover:bg-gray-800 transition-colors"
+            >
+              post update
+            </Link>
           </div>
         )}
       </main>
