@@ -67,7 +67,7 @@ export default async function ProfilePage({
           <h1 className="text-5xl md:text-6xl font-bold mb-2">{user.name}</h1>
           {user.title && <p className="text-xl text-gray-600">{user.title}</p>}
           <p className="text-sm text-gray-500 mt-4">
-            ekin.io/{user.username}
+            ekin.live/{user.username}
           </p>
         </header>
 
